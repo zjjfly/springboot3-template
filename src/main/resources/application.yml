@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-template
+springdoc:
+  packagesToScan: com.github.zjjfly
+  pathsToMatch: /**
