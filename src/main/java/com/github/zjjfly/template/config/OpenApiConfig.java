@@ -19,10 +19,10 @@ public class OpenApiConfig {
             .info(new Info().title("XXX APIs")
                 .description("some description")
                 .version("v1.0")
-                .license(new License().name("Apache 2.0").url("https://github.com/zjjfly")))
-            .externalDocs(new ExternalDocumentation()
-                .description("Blog")
-                .url("https://zjjfly.github.io"));
+                .license(new License().name("Apache 2.0")
+                    .url("https://www.apache.org/licenses/LICENSE-2.0.txt")))
+            .externalDocs(
+                new ExternalDocumentation().description("GitHub").url("https://github.com/zjjfly"));
     }
 
 }
