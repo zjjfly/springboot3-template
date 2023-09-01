@@ -4,4 +4,3 @@ spring:
 springdoc:
   packagesToScan: com.github.zjjfly
   pathsToMatch: /**
-  enable-native-support: true
