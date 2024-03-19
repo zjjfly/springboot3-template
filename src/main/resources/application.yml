@@ -1,6 +1,38 @@
+server:
+  tomcat:
+    threads:
+      max: 100
+      min-spare: 5
+    max-connections: 1000
+    accept-count: 100
+  port: 8088
+  servlet:
+    context-path: /api
+  max-http-request-header-size: 65536
+
 spring:
   application:
     name: spring-template
-springdoc:
-  packagesToScan: com.github.zjjfly
-  pathsToMatch: /**
+  messages:
+    basename: i18n/messages
+    cache-duration: 3600
+    fallback-to-system-locale: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:15432/postgres
+    username: postgres
+    password: password123
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      connection-timeout: 60000
+      validation-timeout: 10000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  profiles:
+    active: @active-profile@
