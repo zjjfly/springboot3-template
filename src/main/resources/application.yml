@@ -36,3 +36,6 @@ spring:
     show-sql: true
   profiles:
     active: @active-profile@
+error:
+  handling:
+    full-stacktrace-http-statuses[0]: 5xx
