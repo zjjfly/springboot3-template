@@ -1,6 +1,5 @@
 package com.github.zjjfly.template.config;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Zi JunJie <a href="https://github.com/zjjfly"/>github</a>
  */
 @Configuration
-@OpenAPIDefinition(info = @io.swagger.v3.oas.annotations.info.Info(title = "XXX APIs", description = "some description"))
 @Controller
 public class OpenApiConfig {
 
