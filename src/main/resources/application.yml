@@ -34,8 +34,21 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate.order_by.default_null_ordering: last
   profiles:
     active: @active-profile@
+
+logging:
+  level:
+    org.hibernate: INFO
+    # SQL statements and parameters
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    # Statistics and slow queries
+    org.hibernate.stat: DEBUG
+    org.hibernate.SQL_SLOW: INFO
+
 error:
   handling:
     full-stacktrace-http-statuses[0]: 5xx
