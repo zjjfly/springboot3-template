@@ -41,13 +41,7 @@ spring:
 
 logging:
   level:
-    org.hibernate: INFO
-    # SQL statements and parameters
-    org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
-    # Statistics and slow queries
-    org.hibernate.stat: DEBUG
-    org.hibernate.SQL_SLOW: INFO
+    net.ttddyy.dsproxy.listener: DEBUG
 
 error:
   handling:
