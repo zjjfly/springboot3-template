@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * @author <a href="https://github.com/zjjfly"/>zjjfly</a>
  */
-@Component
+@Component("tokenAuditorAware")
 @RequiredArgsConstructor
 public class TokenAuditorAware implements AuditorAware<String> {
 

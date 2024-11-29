@@ -16,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @author <a href="https://github.com/zjjfly"/>zjjfly</a>
  */
 @Configuration
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "tokenAuditorAware")
 public class AuditConfig {
 
     @Bean
