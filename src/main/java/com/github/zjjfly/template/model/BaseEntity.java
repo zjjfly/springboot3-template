@@ -2,6 +2,9 @@ package com.github.zjjfly.template.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 import lombok.Getter;
@@ -14,7 +17,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author <a href="https://github.com/zjjfly"/>zjjfly</a>
@@ -25,7 +29,12 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 @SoftDelete(columnName = "deleted")
-public class BaseEntity<U> {
+public abstract class BaseEntity<I,U> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private I id;
 
     @Version
     @Column(name = "version")
@@ -37,7 +46,7 @@ public class BaseEntity<U> {
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
-    protected Timestamp createdAt;
+    protected LocalDateTime createdAt;
 
     @LastModifiedBy
     @Column(name = "updated_by")
@@ -45,6 +54,17 @@ public class BaseEntity<U> {
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    protected Timestamp updatedAt;
+    protected LocalDateTime updatedAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseEntity<?, ?> that = (BaseEntity<?, ?>) o;
+        return Objects.equals(id, that.id) && Objects.equals(version, that.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version);
+    }
 }
