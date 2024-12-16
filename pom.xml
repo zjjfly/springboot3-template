@@ -18,8 +18,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacoco.version>0.8.12</jacoco.version>
-        <spring.cloud-version>2023.0.2</spring.cloud-version>
+        <spring.cloud-version>2024.0.0</spring.cloud-version>
     </properties>
 
     <dependencies>
@@ -73,12 +72,6 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
             <version>5.8.26</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>org.jacoco.agent</artifactId>
-            <version>${jacoco.version}</version>
-            <classifier>runtime</classifier>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -139,53 +132,21 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
+                <version>0.8.12</version>
                 <executions>
                     <execution>
-                        <id>default-instrument</id>
                         <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                        <!-- 下面这一行在官方的样例中没有，当需要在运行测试之前对测试代码做一些额外的编译或生成工作，
-                        则需要这一行，它可以保证这些工作完成之后再使用Jacoco对字节码进行instrument -->
-                        <!-- <phase>process-test-classes</phase> -->
-                    </execution>
-                    <execution>
-                        <id>default-restore-instrumented-classes</id>
-                        <goals>
-                            <goal>restore-instrumented-classes</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <dataFile>${project.build.directory}/coverage.exec</dataFile>
-                        </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <!--                    如使用Java 11及以上的版本需要下面的这些参数 -->
-                    <!--                    <argLine>-->
-                    <!--                        &#45;&#45;add-opens java.base/java.lang=ALL-UNNAMED-->
-                    <!--                        &#45;&#45;add-opens java.base/java.lang.reflect=ALL-UNNAMED-->
-                    <!--                        &#45;&#45;add-opens java.base/java.util=ALL-UNNAMED-->
-                    <!--                        &#45;&#45;add-opens java.xml/jdk.xml.internal=ALL-UNNAMED-->
-                    <!--                        &#45;&#45;add-opens java.base/java.time=ALL-UNNAMED-->
-                    <!--                        &#45;&#45;add-opens java.base/java.time.format=ALL-UNNAMED-->
-                    <!--                    </argLine>-->
-                    <systemPropertyVariables>
-                        <jacoco-agent.destfile>${project.build.directory}/coverage.exec
-                        </jacoco-agent.destfile>
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
