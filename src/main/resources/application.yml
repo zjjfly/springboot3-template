@@ -36,6 +36,28 @@ spring:
     show-sql: true
     properties:
       hibernate.order_by.default_null_ordering: last
+  flyway:
+    #数据库存在表时，自动使用设置的基线版本（baseline-version），数据库不存在表时，即使设置了，也会从第一个版本开始执行，默认值为false
+    baseline-on-migrate: true
+    #基线版本号，baseline-on-migrate为true时小于等于此版本号的脚本不会执行，默认值为1
+    baseline-version: 1.0.0
+    #设置为false会删除指定schema下所有的表，生产环境务必禁用，spring中该参数默认是false，需要手动设置为true
+    clean-disabled: true
+    #sql脚本存放位置，允许设置多个location，用英文逗号分割，默认值为classpath:db/migration
+    locations: classpath:db/migration
+    #是否替换sql脚本中的占位符，占位符默认是${xxx},默认是替换，如果不需要替换，可以设置为false
+    placeholder-replacement: false
+    #脚本名称的统一前缀，用于filter要执行的脚本
+    sql-migration-prefix: V
+    #版本和后面的描述之间的分隔符
+    sql-migration-separator: __
+    #记录flyway执行情况的表
+    table: flyway_schema_history
+    fail-on-missing-locations: true
+    #脚本的后缀，用于filter要执行的脚本
+    sql-migration-suffixes: .sql
+
+
   profiles:
     active: @active-profile@
 
