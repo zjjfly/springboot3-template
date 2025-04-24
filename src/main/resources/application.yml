@@ -33,7 +33,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
     properties:
       hibernate.order_by.default_null_ordering: last
   flyway:
@@ -68,3 +67,33 @@ logging:
 error:
   handling:
     full-stacktrace-http-statuses[0]: 5xx
+
+
+springdoc:
+  swagger-ui:
+    #开启swagger-ui文档展示
+    enabled: true
+    #UI访问路径
+    path: /swagger-ui.html
+    #标签排序方式
+    tags-sorter: alpha
+    #操作排序方式
+    operations-sorter: alpha
+  api-docs:
+    #开启OpenAPI展示
+    enabled: true
+    #OpenAPI JSON路径
+    path: /v3/api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  #关闭文档缓存
+  cache:
+    disabled: false
+  #显示actuator端点
+  show-actuator: false
+  #推荐保持默认，显示结构化参数
+  default-flat-param-object: true
+  #允许在文档中展示Spring MVC的ModelAndView返回类型
+  model-and-view-allowed: true
+  #推荐关闭以确保文档精确性
+  override-with-generic-response: false
