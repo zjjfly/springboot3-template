@@ -13,6 +13,8 @@ server:
 spring:
   application:
     name: spring-template
+  profiles:
+    active: @spring.profiles.active@
   messages:
     basename: i18n/messages
     cache-duration: 3600
@@ -55,10 +57,10 @@ spring:
     fail-on-missing-locations: true
     #脚本的后缀，用于filter要执行的脚本
     sql-migration-suffixes: .sql
-
-
-  profiles:
-    active: @active-profile@
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
 
 logging:
   level:
