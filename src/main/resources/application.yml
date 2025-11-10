@@ -15,6 +15,9 @@ spring:
     name: spring-template
   profiles:
     active: @spring.profiles.active@
+  config:
+    #import local env file if exists
+    import: optional:file:.env[.properties]
   messages:
     basename: i18n/messages
     cache-duration: 3600
@@ -22,9 +25,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USE}
+    password: ${POSTGRES_PASSWORD}
     hikari:
       minimum-idle: 5
       maximum-pool-size: 15
@@ -62,14 +65,9 @@ spring:
       okhttp:
         enabled: true
 
-logging:
-  level:
-    net.ttddyy.dsproxy.listener: DEBUG
-
 error:
   handling:
     full-stacktrace-http-statuses[0]: 5xx
-
 
 springdoc:
   swagger-ui:
