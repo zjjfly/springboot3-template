@@ -40,6 +40,7 @@ spring:
       ddl-auto: none
     properties:
       hibernate.order_by.default_null_ordering: last
+    open-in-view: false
   flyway:
     #数据库存在表时，自动使用设置的基线版本（baseline-version），数据库不存在表时，即使设置了，也会从第一个版本开始执行，默认值为false
     baseline-on-migrate: true

@@ -1,7 +1,5 @@
 package com.github.zjjfly.template.model;
 
-import app.tozzi.annotation.Searchable;
-import app.tozzi.model.JPASearchOperatorFilter;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,11 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Person extends BaseEntity<UUID, String> {
 
-
-    @Searchable(allowedFilters = {JPASearchOperatorFilter.EQ, JPASearchOperatorFilter.CONTAINS})
     private String name;
 
-    @Searchable(allowedFilters = {JPASearchOperatorFilter.BETWEEN, JPASearchOperatorFilter.GTE, JPASearchOperatorFilter.LTE})
     private Integer age;
 
 }

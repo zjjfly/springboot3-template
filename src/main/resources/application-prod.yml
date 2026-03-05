@@ -1,4 +1,5 @@
 springdoc:
+  api-docs:
+    enabled: false
   swagger-ui:
-    csrf:
-      enabled: false
+    enabled: false

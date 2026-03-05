@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -27,8 +26,7 @@ public class PersonController {
 
     @GetMapping
     public Response<List<Person>> search() {
-        List<Person> all = personRepository.findAll(Map.of("name_eq", "foo",
-                        "age_lte", "18"), Person.class);
+        List<Person> all = personRepository.findAll();
         return Response.success(all);
     }
 
