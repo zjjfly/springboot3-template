@@ -7,32 +7,33 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.11</version>
+        <version>4.1.1</version>
     </parent>
 
     <groupId>com.github.zjjfly</groupId>
-    <artifactId>springboot3-template</artifactId>
+    <artifactId>springboot-template</artifactId>
     <version>1.0</version>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.cloud.version>2025.0.1</spring.cloud.version>
-        <shedlock.version>7.6.0</shedlock.version>
-        <flyway.version>12.0.3</flyway.version>
-        <feign-okhttp.version>13.9.3</feign-okhttp.version>
-        <instancio.version>5.5.1</instancio.version>
-        <lombok.version>1.18.42</lombok.version>
-        <postgres-driver.version>42.7.7</postgres-driver.version>
-        <error-handling.vesion>4.7.0</error-handling.vesion>
-        <datasource-proxy.version>1.12.1</datasource-proxy.version>
-        <hypersistence.version>3.15.2</hypersistence.version>
+        <spring.cloud.version>2025.1.2</spring.cloud.version>
+        <shedlock.version>7.9.0</shedlock.version>
+        <flyway.version>13.4.0</flyway.version>
+        <feign-okhttp.version>13.14</feign-okhttp.version>
+        <instancio.version>6.0.0</instancio.version>
+        <lombok.version>1.18.46</lombok.version>
+        <postgres-driver.version>42.7.13</postgres-driver.version>
+        <error-handling.vesion>5.1.1</error-handling.vesion>
+        <datasource-proxy.version>2.0.1</datasource-proxy.version>
+        <hypersistence.version>3.15.4</hypersistence.version>
+        <openapi-ui.version>3.1.0</openapi-ui.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,7 +42,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.8.16</version>
+            <version>${openapi-ui.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,7 +97,7 @@
         </dependency>
         <dependency>
             <groupId>io.hypersistence</groupId>
-            <artifactId>hypersistence-utils-hibernate-63</artifactId>
+            <artifactId>hypersistence-utils-hibernate-73</artifactId>
             <version>${hypersistence.version}</version>
         </dependency>
         <dependency>
@@ -140,7 +141,7 @@
                 <!-- run command `mvn -Pnative native:compile` to build native image -->
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
-                <version>0.10.6</version>
+                <version>1.0.0</version>
                 <configuration>
                     <!-- imageName用于设置生成的二进制文件名称 -->
                     <imageName>${project.artifactId}</imageName>
@@ -157,19 +158,19 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
                 <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

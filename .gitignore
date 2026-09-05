@@ -4,3 +4,4 @@ target/
 logs/
 .vscode/
 .env
+**/.DS_Store
